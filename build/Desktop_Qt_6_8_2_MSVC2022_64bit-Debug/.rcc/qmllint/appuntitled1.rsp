@@ -1,0 +1,12 @@
+--bare
+-I
+C:/Users/variu/Documents/untitled1/build/Desktop_Qt_6_8_2_MSVC2022_64bit-Debug
+-I
+C:/QtOnline/6.8.2/msvc2022_64/qml
+--resource
+C:/Users/variu/Documents/untitled1/build/Desktop_Qt_6_8_2_MSVC2022_64bit-Debug/.qt/rcc/qmake_untitled1.qrc
+--resource
+C:/Users/variu/Documents/untitled1/build/Desktop_Qt_6_8_2_MSVC2022_64bit-Debug/.qt/rcc/appuntitled1_raw_qml_0.qrc
+C:/Users/variu/Documents/untitled1/Main.qml
+C:/Users/variu/Documents/untitled1/SideMenuLeft.qml
+C:/Users/variu/Documents/untitled1/SideMenuRight.qml
