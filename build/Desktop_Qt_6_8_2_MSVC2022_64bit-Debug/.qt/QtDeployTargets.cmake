@@ -1,3 +1,0 @@
-set(__QT_DEPLOY_TARGET_appuntitled1_FILE C:/Users/variu/Documents/untitled1/build/Desktop_Qt_6_8_2_MSVC2022_64bit-Debug/appuntitled1.exe)
-set(__QT_DEPLOY_TARGET_appuntitled1_TYPE EXECUTABLE)
-set(__QT_DEPLOY_TARGET_appuntitled1_RUNTIME_DLLS C:/QtOnline/6.8.2/msvc2022_64/bin/Qt6Quickd.dll;C:/QtOnline/6.8.2/msvc2022_64/bin/Qt6QmlMetad.dll;C:/QtOnline/6.8.2/msvc2022_64/bin/Qt6QmlWorkerScriptd.dll;C:/QtOnline/6.8.2/msvc2022_64/bin/Qt6QmlModelsd.dll;C:/QtOnline/6.8.2/msvc2022_64/bin/Qt6Qmld.dll;C:/QtOnline/6.8.2/msvc2022_64/bin/Qt6Networkd.dll;C:/QtOnline/6.8.2/msvc2022_64/bin/Qt6OpenGLd.dll;C:/QtOnline/6.8.2/msvc2022_64/bin/Qt6Guid.dll;C:/QtOnline/6.8.2/msvc2022_64/bin/Qt6Cored.dll)
