@@ -3,4 +3,4 @@
 
 <H3>Отслеживание версий:</H3>
 20.05.2025
-Добавлены боковые меню справа и слева (файлы SideMenuLeft.qml и SideMenuRight.qml) и их вызов в Main.qml
+Добавлены боковые меню слева и справа (файлы SideMenuLeft.qml и SideMenuRight.qml) и их вызов в Main.qml
