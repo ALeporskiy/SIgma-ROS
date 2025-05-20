@@ -5,7 +5,8 @@ import QtPositioning
 import QtQuick.Controls
 
 
-Window{
+Window
+{
     id: root
     visible: true
     visibility: Window.Maximized
@@ -101,88 +102,20 @@ Window{
         }
     }
 
-//-----------------------------------------------------Создание и анимация левого бокового меню------------------------------------------//
+// Обращение к файлу SideMenuLeft.qml, где происходит инициализация правое боковое меню
 
-    Rectangle                                                                                               // Основной прямоугольник
+    SideMenuLeft
     {
-        id: mainRec
-        width: 150
-        height: root.height
-        color: "grey";
-        opacity: bMenuShown ? 1 : 0.85                                                                       // Изменение значения opacity
-        Behavior on opacity                                                                                 // для закрытия меню
-        {                                                                                                   //
-            NumberAnimation                                                                                 // продолжительность анимации
-            {
-                duration: 100
-            }
-        }
-
-        transform: Translate                                                                                // Перемещение основного прямоугольника
-        {
-            id: menuTranslate1
-            x: -150                                                                                         // из области за экраном по оси X (-150 задана начальная точка)
-            Behavior on x
-            {
-                NumberAnimation
-                {
-                    duration: 1000                                                                          // Продолжительность анимации
-                    easing.type: Easing.OutQuad                                                             // Сглаживание
-                }
-            }
-        }
 
     }
 
-        Rectangle                                                                                           // Вспомогательный прямоугольник с кнопкой
-        {
-
-            width: 48
-            height: 48
-            color: "transparent";
 
 
-            Button
-            {
+// Обращение к файлу SideMenuRight.qml, где происходит инициализация правое боковое меню
 
-                width: 48
-                height: 48
-                text: qsTr("МЕНЮ")
-                onClicked: onMenu();
-
-            }
-
-            transform: Translate                                                                            // Инициализация движения по оси Х
-            {                                                                                               // Начальное значение по оси Х
-                id: menuTranslate                                                                           // Продолжительность анимации
-                x: 0                                                                                        // Определение типа сглаживания
-                Behavior on x                                                                               //
-                {
-                    NumberAnimation
-                    {
-                        duration: 1000;
-                        easing.type: Easing.OutQuad
-                    }
-                }
-            }
-
-            MouseArea
-            {
-                anchors.fill: parent
-                enabled: bMenuShown
-                onClicked: onMenu()
-            }
-        }
-
-    function onMenu()
+    SideMenuRight
     {
-        menuTranslate.x = bMenuShown ? 1 : mainRec.width //root.width * 0.0769
-        menuTranslate1.x = bMenuShown ? -150 : 0
-        bMenuShown = !bMenuShown;
+
     }
-
-//-----------------------------------------------------Конец Создание и анимация левого бокового меню------------------------------------------//
-
-
 
 }
