@@ -1,3 +1,8 @@
+// В этом файле происходит инициализация левого бокового меню и анимация его появления
+// Само меню представлено в виде Rectangle
+// Меню появляется на экране по нажатию кнопки "Меню"
+// Кнопка "Меню" находится в отдельном Rectangle
+
 import QtQuick
 import QtQuick.Controls
 
@@ -13,7 +18,7 @@ Rectangle
         transform: Translate                                                                                // Перемещение основного прямоугольника
         {
             id: sMenuLeftTrans
-                                                                                                     // из области за экраном по оси X (-150 задана начальная точка)
+
             Behavior on x
             {
                 NumberAnimation
@@ -23,6 +28,7 @@ Rectangle
                 }
             }
         }
+
         Rectangle                                                                                           // Вспомогательный прямоугольник с кнопкой
         {
             x: sMenuLeft.width
@@ -37,7 +43,14 @@ Rectangle
                 id: leftButton
                 width: 48
                 height: 48
-                text: qsTr("МЕНЮ")
+
+                ToolTip.visible: hovered
+                ToolTip.text: qsTr("Меню")
+
+                icon.width: 38
+                icon.height: 38
+                icon.source: "Icons/Hamburger_MD.svg"
+
                 onClicked: onMenuLeft();
 
             }

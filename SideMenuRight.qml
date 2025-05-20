@@ -1,8 +1,13 @@
+// В этом файле происходит инициализация правого бокового меню и анимация его появления
+// Само меню представлено в виде Rectangle
+// Меню появляется на экране по нажатию кнопки "Меню"
+// Кнопка "Меню" находится в отдельном Rectangle
+
 import QtQuick
 import QtQuick.Controls
 
 
-Rectangle
+Rectangle                                                                                                   //Инициализация Rectangle для бокового меню
 {
         id: sMenuRight
         width: parent.width/10
@@ -14,7 +19,7 @@ Rectangle
         transform: Translate                                                                                // Перемещение основного прямоугольника
         {
             id: sMenuRightTrans
-                                                                                                     // из области за экраном по оси X (-150 задана начальная точка)
+
             Behavior on x
             {
                 NumberAnimation
@@ -24,7 +29,7 @@ Rectangle
                 }
             }
         }
-        Rectangle                                                                                           // Вспомогательный прямоугольник с кнопкой
+        Rectangle                                                                                           // Инициализация Rectangle для кнопки "Меню"
         {
 
             x: -rightButton.width
@@ -39,16 +44,23 @@ Rectangle
                 id: rightButton
                 width: 48
                 height: 48
-                text: qsTr("МЕНЮ")
+
+                ToolTip.visible: hovered
+                ToolTip.text: "Параметры"
+
+                icon.width: 38
+                icon.height: 38
+                icon.source: "Icons/More_Grid_Big.svg"
+
                 onClicked: onMenuRight();
 
             }
 
             transform: Translate                                                                            // Инициализация движения по оси Х
             {                                                                                               // Начальное значение по оси Х
-                id: rightButtonTrans                                                                           // Продолжительность анимации
+                id: rightButtonTrans                                                                        // Продолжительность анимации
                 x: 0                                                                                        // Определение типа сглаживания
-                Behavior on x                                                                               //
+                Behavior on x
                 {
                     NumberAnimation
                     {
@@ -66,7 +78,7 @@ Rectangle
             }
         }
 
-    function onMenuRight()
+    function onMenuRight()                                                                                  // Функция для кнопки, по нажатию которой происходит появление меню
     {
         bMenuShown = !bMenuShown
         sMenuRightTrans.x = bMenuShown ? -sMenuRight.width : 0;
