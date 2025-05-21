@@ -29,6 +29,18 @@ Rectangle
             }
         }
 
+        Button
+        {
+            id: lMenuButton1
+            x: sMenuLeft.width/5
+
+            width: 28
+            height: 28
+
+
+
+        }
+
         Rectangle                                                                                           // Вспомогательный прямоугольник с кнопкой
         {
             x: sMenuLeft.width

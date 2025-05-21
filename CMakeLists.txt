@@ -20,6 +20,13 @@ qt_add_qml_module(appuntitled1
         QML_FILES
         QML_FILES SideMenuLeft.qml
         QML_FILES SideMenuRight.qml
+        RESOURCES
+        RESOURCES  Icons/Hamburger_MD.svg
+        RESOURCES Icons/More_Grid_Big.svg
+        QML_FILES
+        RESOURCES Icons/Add_Minus_Square.svg Icons/Add_Plus_Square.svg
+        QML_FILES ZoomButtons.qml
+        QML_FILES MyDrawer.qml MyToolBarDrawer.qml
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

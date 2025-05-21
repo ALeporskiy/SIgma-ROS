@@ -12,29 +12,29 @@ Window
     visibility: Window.Maximized
     width: Screen.width/1.5
     height: Screen.height/1.5
-    title: qsTr("Sigma V2")                                                                                 // Новое раздел с property
+    title: qsTr("Sigma V2")
     property bool bMenuShown: false
 
 
 
-        Plugin
-        {
-        id: mapPlugin
-        name: "osm"
+    Plugin
+    {
+    id: mapPlugin
+    name: "osm"
 
-            PluginParameter
-            {
-            name: "osm.mapping.custom.host"
-            value: "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/8/136/74"
-            }
+        PluginParameter
+        {
+        name: "osm.mapping.custom.host"
+        value: "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/8/136/74"
         }
+    }
     Map
     {
         id: map
         plugin: mapPlugin
         anchors.fill: parent
         activeMapType: supportedMapTypes[supportedMapTypes.length]
-        zoomLevel: 1
+        zoomLevel: 2
         minimumZoomLevel: 5
         maximumZoomLevel: 17
         center: QtPositioning.coordinate(54.2,36.2)
@@ -76,7 +76,7 @@ Window
             acceptedDevices: Qt.platform.pluginName === "cocoa" || Qt.platform.pluginName === "wayland"
                             ? PointerDevice.Mouse | PointerDevice.TouchPad
                             : PointerDevice.Mouse
-            rotationScale: 1/60
+            rotationScale: 1/150
             property: "zoomLevel"
             }
     }
@@ -104,10 +104,10 @@ Window
 
 // Обращение к файлу SideMenuLeft.qml, где происходит инициализация левого бокового меню
 
-    SideMenuLeft
-    {
+    // SideMenuLeft
+    // {
 
-    }
+    // }
 
 
 
@@ -117,5 +117,22 @@ Window
     {
 
     }
+
+// Обращение к файлу ZoomButtons.qml, где происходит инициализация кнопок для зума карты
+
+    ZoomButtons
+    {
+
+    }
+
+    MyDrawer
+    {
+
+    }
+
+    // MyToolBarDrawer
+    // {
+
+    // }
 
 }
