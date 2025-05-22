@@ -27,6 +27,8 @@ qt_add_qml_module(appuntitled1
         RESOURCES Icons/Add_Minus_Square.svg Icons/Add_Plus_Square.svg
         QML_FILES ZoomButtons.qml
         QML_FILES MyDrawer.qml MyToolBarDrawer.qml
+        RESOURCES
+        RESOURCES
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
@@ -43,6 +45,7 @@ set_target_properties(appuntitled1 PROPERTIES
 target_link_libraries(appuntitled1
     PRIVATE Qt6::Quick
 )
+
 
 include(GNUInstallDirs)
 install(TARGETS appuntitled1

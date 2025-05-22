@@ -13,7 +13,9 @@ Rectangle                                                                       
         width: parent.width/10
         height: parent.height
         x: parent.width
-        color: "red"
+        border.width: 1
+        opacity: 0.9
+        color: "white"
         property bool bMenuShown: false
 
         transform: Translate                                                                                // Перемещение основного прямоугольника

@@ -4,7 +4,8 @@ import QtQuick.Controls
 Rectangle {
 
     id: panel
-
+    border.width: 1
+    opacity: 0.9
     //ВНЕШНИЕ СВОЙСТВА И ФУНКЦИИ ЭЛЕМЕНТА MYDRAWER
 
     //Состояние элемента MyDrawer: true - ящик выдвинут, false - ящик закрыт.
@@ -102,7 +103,7 @@ Rectangle {
     property Item _rootItem: parent
 
     //Определяет высоту MyDrawer. Высота равна высоте родительского элемента.
-    height: parent.height
+    height: parent.height/1.3
 
     //Обработка события изменения правого края MyDrawer.
     on_RightEdgeChanged: _setupAnchors()
@@ -267,7 +268,7 @@ Rectangle {
           - если MyDrawer открыт, то весь корневой элемент.
           - если MyDrawer закрыт, то величина отступа.*/
         width: open ? _rootItem.width : _openMarginSize
-        height: visualParent.height
+        height: visualParent.height/1.3
 
         //Обработка события зажатия кнопки мыши. Запускает анимацию для перетаскивания
         onPressed:  if (!open) holdAnimation.restart();
@@ -315,23 +316,38 @@ Rectangle {
     }
 
     //Элемент для создания тени от MyDrawer.
-    Item{
-        id: shadow
-        anchors.left: panel.right
-        anchors.leftMargin: _rightEdge ? 0 : 4 * _scaleFactor
-        height: parent.height
+    // Item{
+    //     id: shadow
+    //     anchors.left: panel.right
+    //     anchors.leftMargin: _rightEdge ? 0 : 4 * _scaleFactor
+    //     height: parent.height
 
-        Rectangle{
-            height: 4 * _scaleFactor
-            width: panel.height
-            rotation: 90
-            opacity: Math.min(1, Math.abs(panel.x - _collapsedX)/_openMarginSize)
-            //Точка вокруг которой осуществляется поворот на 90 градусов.
-            transformOrigin: Item.TopLeft
-            gradient: Gradient{
-                GradientStop { position: _rightEdge ? 1 : 0 ; color: "#00000000"}
-                GradientStop { position: _rightEdge ? 0 : 1 ; color: "#2c000000"}
-            }
-        }
-    }
+    //     Rectangle{
+    //         height: 4 * _scaleFactor
+    //         width: panel.height
+    //         rotation: 90
+    //         opacity: Math.min(1, Math.abs(panel.x - _collapsedX)/_openMarginSize)
+    //         //Точка вокруг которой осуществляется поворот на 90 градусов.
+    //         transformOrigin: Item.TopLeft
+    //         gradient: Gradient{
+    //             GradientStop { position: _rightEdge ? 1 : 0 ; color: "#00000000"}
+    //             GradientStop { position: _rightEdge ? 0 : 1 ; color: "#2c000000"}
+    //         }
+    //     }
+    //     Rectangle{
+
+    //         height: 2 * _scaleFactor
+    //         width: panel.width
+    //         x: -panel.width - 4 * _scaleFactor
+    //         y: panel.height
+    //         //rotation: 90
+    //         opacity: Math.min(1, Math.abs(panel.x - _collapsedX)/_openMarginSize)
+    //         //Точка вокруг которой осуществляется поворот на 90 градусов.
+    //         //transformOrigin: Item.TopLeft
+    //         gradient: Gradient{
+    //             GradientStop { position: _rightEdge ? 1 : 0 ; color: "#00000000"}
+    //             GradientStop { position: _rightEdge ? 0 : 1 ; color: "#2c000000"}
+    //         }
+    //     }
+    // }
 }

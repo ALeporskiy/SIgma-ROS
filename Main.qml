@@ -22,10 +22,20 @@ Window
     id: mapPlugin
     name: "osm"
 
+        // PluginParameter
+        // {
+        // name: "osm.mapping.custom.host"
+        // value: "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/8/136/74"
+        // }
         PluginParameter
         {
-        name: "osm.mapping.custom.host"
-        value: "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/8/136/74"
+            name: "osm.mapping.providersrepository.disabled"
+            value: "true"
+        }
+        PluginParameter
+        {
+            name: "osm.mapping.providersrepository.address"
+            value: "http://maps-redirect.qt.io/osm/5.6/"
         }
     }
     Map
