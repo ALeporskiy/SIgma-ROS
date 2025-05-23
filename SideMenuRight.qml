@@ -84,8 +84,6 @@ Rectangle                                                                       
     {
         bMenuShown = !bMenuShown
         sMenuRightTrans.x = bMenuShown ? -sMenuRight.width : 0;
-
-
     }
 
 }

@@ -10,6 +10,7 @@ Column
     anchors.bottom: parent.bottom
     anchors.bottomMargin: 100
     spacing: 10
+
     property Item rowButtons: parent
 
     Button //Кнопка зума карты ПЛЮС

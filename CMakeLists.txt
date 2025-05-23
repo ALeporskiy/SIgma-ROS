@@ -29,6 +29,9 @@ qt_add_qml_module(appuntitled1
         QML_FILES MyDrawer.qml MyToolBarDrawer.qml
         RESOURCES
         RESOURCES
+        QML_FILES MyMap.qml
+        QML_FILES MyDrawerContent.qml
+        QML_FILES SettingsWindow.qml
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

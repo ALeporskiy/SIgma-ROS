@@ -315,6 +315,11 @@ Rectangle {
         clip: true
     }
 
+    MyDrawerContent
+    {
+
+    }
+
     //Элемент для создания тени от MyDrawer.
     // Item{
     //     id: shadow
