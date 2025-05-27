@@ -1,19 +1,16 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Window
-import QtLocation
 import QtPositioning
 
 Window
     {
 
     width: 400; height: 100
-    title: "Настройки"
+    title: "Ввод координат"
+    property var mapCenterLatitude: ""
+    property var mapCenterLongitude: ""
 
-    Text {
-        anchors.centerIn: parent
-        text: qsTr("Настройки")
-    }
 
     Column
     {
@@ -31,11 +28,16 @@ Window
 
             onClicked:
             {
-                Connections
-                {
-                    target: map
-                    map.center = QtPositioning.coordinate(55.75,37.61)
-                }
+                // map.center = QtPositioning.coordinate(54.2,16.2)
+                // map.zoomLevel = 10
+                let lat = parseFloat(mapCenterLatitude);
+                                let lon = parseFloat(mapCenterLongitude);
+
+                                if (!isNaN(lat) && !isNaN(lon)) {
+                                    map.center = QtPositioning.coordinate(lat, lon);
+                                } else {
+                                    console.log("Неверный формат координат");
+                                }
 
 
             }
@@ -44,12 +46,16 @@ Window
 
         }
 
-        Button
-        {
-            id: b2
-            width: 30
-            height: 30
+        TextField {
+                    id: latitudeField
+                    placeholderText: "Введите широту"
+                    onTextChanged: mapCenterLatitude = text
+                }
 
-        }
+                TextField {
+                    id: longitudeField
+                    placeholderText: "Введите долготу"
+                    onTextChanged: mapCenterLongitude = text
+                }
     }
 }

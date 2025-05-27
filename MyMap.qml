@@ -11,11 +11,15 @@ Map
     copyrightsVisible: false
     //activeMapType: supportedMapTypes[supportedMapTypes.length]
     //activeMapType: Map.street
+
     zoomLevel: 2
     minimumZoomLevel: 5
     maximumZoomLevel: 17
-    center: QtPositioning.coordinate(54.2,36.2)
+    center: QtPositioning.coordinate(33.2,46.2)
+
     property geoCoordinate startCentroid
+    property alias center: map.center
+    property alias zoomLevel: map.zoomLevel
 
     PinchHandler                                                                                       // Пермещение карты с помощью тачпада или сенсорного экрана
         {
@@ -107,17 +111,6 @@ Map
 
     }
 
-    MapPolyline
-    {
 
-        line.width: 5
-        opacity: 0.2
-        line.color: "red"
-        path: [{ latitude: 57, longitude: 153.0 },
-            { latitude: 57, longitude: 154.1 },
-            { latitude: -28, longitude: 153.5 },
-            { latitude: -29, longitude: 153.5 }
-        ]
-    }
 
 }

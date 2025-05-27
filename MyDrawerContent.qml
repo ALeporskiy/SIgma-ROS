@@ -11,6 +11,7 @@ Column
     spacing: 5
 
 
+
     Button
     {
         id: drawerContentButton1
@@ -20,6 +21,10 @@ Column
             var component = Qt.createComponent("SettingsWindow.qml")
             var window    = component.createObject(root)
             window.show()
+
+
+
+
         }
     }
 
