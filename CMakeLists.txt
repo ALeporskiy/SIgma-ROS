@@ -58,3 +58,6 @@ install(TARGETS Sigma_ROS
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
+
+add_subdirectory(libbase)
+add_subdirectory(libtle)
