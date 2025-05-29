@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Controls
 import QtLocation
 import QtPositioning
+import SpaceSim 1.0
 
 Map
 {
@@ -111,6 +112,62 @@ Map
 
     }
 
+    TrajectoryManager
+        {
+            id: trajectoryManager
+            onTrajectoryChanged: {
+                flightPath.path = trajectoryManager.trajectory
+            }
+            onCurrentPositionChanged: {
+                satellite.coordinate = trajectoryManager.currentPosition
+            }
+        }
+
+        MapPolyline {
+            id: flightPath
+            line.width: 2
+            line.color: "red"
+            path: []
+        }
+
+        MapQuickItem {
+            id: satellite
+            coordinate: QtPositioning.coordinate(0, 0)
+            sourceItem: Rectangle {
+                width: 12
+                height: 12
+                radius: 6
+                color: "blue"
+            }
+            anchorPoint.x: 6
+            anchorPoint.y: 6
+        }
+
+        Button {
+            text: "Загрузить орбиту"
+            anchors.bottom: parent.bottom
+            onClicked: trajectoryManager.loadTLE("TLE.TLE")
+        }
+
+        Column {
+            anchors.fill: parent
+            anchors.margins: 5
+            spacing: 4
+
+
+            Text {
+                text: "🚀 Спутник: " + trajectoryManager.currentPosition.latitude.toFixed(4) +
+                      ", " + trajectoryManager.currentPosition.longitude.toFixed(4) +
+                      "\n📍 Траектория[0]: " +
+                      (trajectoryManager.trajectory.length > 0
+                          ? trajectoryManager.trajectory[0].latitude.toFixed(4)
+                          : "—") +
+                      ", " +
+                      (trajectoryManager.trajectory.length > 0
+                          ? trajectoryManager.trajectory[0].longitude.toFixed(4)
+                          : "—")
+            }
+        }
 
 
 }

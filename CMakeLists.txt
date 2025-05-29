@@ -3,8 +3,9 @@ cmake_minimum_required(VERSION 3.16)
 project(Sigma_ROS VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-find_package(Qt6 REQUIRED COMPONENTS Quick)
+set(Qt6Positioning_DIR "C:/Qt/6.8.2/msvc2022_64/lib/cmake/Qt6Positioning")
+set(QT_QML_GENERATE_QMLTYPES TRUE)
+find_package(Qt6 REQUIRED COMPONENTS Quick Core Positioning)
 
 qt_standard_project_setup(REQUIRES 6.8)
 
@@ -34,6 +35,7 @@ qt_add_qml_module(Sigma_ROS
         QML_FILES MyDrawerContent.qml
         QML_FILES SettingsWindow.qml
         QML_FILES
+        SOURCES trajectorymanager.h trajectorymanager.cpp
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
@@ -48,7 +50,12 @@ set_target_properties(Sigma_ROS PROPERTIES
 )
 
 target_link_libraries(Sigma_ROS
-    PRIVATE Qt6::Quick
+    PRIVATE
+            Qt6::Quick
+            Qt6::Core
+            Qt6::Positioning
+            libbase
+            libtle
 )
 
 

@@ -24,3 +24,4 @@ target_compile_definitions(libtle PRIVATE LIBTLE_LIBRARY)
 
 # Добавляем зависимость между двумя библиотеками:
 target_link_libraries(libtle PUBLIC libbase)
+
