@@ -115,6 +115,9 @@ Map
     TrajectoryManager
         {
             id: trajectoryManager
+            Component.onCompleted: {
+                    trajectoryManager.loadTLE("TLE.TLE")
+                }
             onTrajectoryChanged: {
                 flightPath.path = trajectoryManager.trajectory
             }
@@ -143,11 +146,11 @@ Map
             anchorPoint.y: 6
         }
 
-        Button {
-            text: "Загрузить орбиту"
-            anchors.bottom: parent.bottom
-            onClicked: trajectoryManager.loadTLE("TLE.TLE")
-        }
+        // Button {
+        //     text: "Загрузить орбиту"
+        //     anchors.bottom: parent.bottom
+        //     onClicked: trajectoryManager.loadTLE("TLE.TLE")
+        // }
 
         Column {
             anchors.fill: parent
@@ -156,7 +159,7 @@ Map
 
 
             Text {
-                text: "🚀 Спутник: " + trajectoryManager.currentPosition.latitude.toFixed(4) +
+                text: "🚀 МКС: " + trajectoryManager.currentPosition.latitude.toFixed(4) +
                       ", " + trajectoryManager.currentPosition.longitude.toFixed(4) +
                       "\n📍 Траектория[0]: " +
                       (trajectoryManager.trajectory.length > 0
@@ -168,6 +171,7 @@ Map
                           : "—")
             }
         }
+
 
 
 }

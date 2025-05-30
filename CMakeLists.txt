@@ -36,6 +36,7 @@ qt_add_qml_module(Sigma_ROS
         QML_FILES SettingsWindow.qml
         QML_FILES
         SOURCES trajectorymanager.h trajectorymanager.cpp
+        QML_FILES TopMenu.qml
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

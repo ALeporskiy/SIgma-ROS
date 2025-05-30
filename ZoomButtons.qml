@@ -1,5 +1,5 @@
 import QtQuick
-import QtQuick.Controls
+import QtQuick.Controls.Basic
 
 
 Column
@@ -22,6 +22,7 @@ Column
 
         ToolTip.visible: hovered
         ToolTip.text: qsTr("Приблизить")
+        padding: 0
 
         icon.width: 50
         icon.height: 50
@@ -33,6 +34,11 @@ Column
         autoRepeatInterval: 1
         autoRepeatDelay: 1
 
+        background: Rectangle
+        {
+            radius: 15
+        }
+
     }
     Button  //Кнопка зума карты МИНУС
     {
@@ -43,15 +49,25 @@ Column
 
         ToolTip.visible: hovered
         ToolTip.text: qsTr("Отдалить")
+        padding: 0
 
         icon.width: 50
         icon.height: 50
         icon.source: "Icons/Add_Minus_Square.svg"
 
+
         onClicked: map.zoomLevel = map.zoomLevel - 0.01;
         autoRepeat: true
         autoRepeatInterval: 1
         autoRepeatDelay: 1
+
+
+
+        background: Rectangle
+        {
+            radius: 15
+
+        }
     }
 
 }

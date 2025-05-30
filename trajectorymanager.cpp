@@ -12,13 +12,19 @@ TrajectoryManager::TrajectoryManager(QObject *parent)
     : QObject(parent)
 {
     connect(&m_timer, &QTimer::timeout, this, &TrajectoryManager::startTracking);
-    m_timer.setInterval(1000); // обновлять каждую секунду
+    m_timer.setInterval(100); // обновлять каждые 100 мс
+
+    connect(&m_refreshTrajectoryTimer, &QTimer::timeout, this, [this]() {
+        //qDebug() << "[ТРАЕКТОРИЯ] Перерасчет траектории через 90 мин";
+        loadTLE(m_lastLoadedFile); // будем хранить путь к TLE
+    });
 }
 
 void TrajectoryManager::loadTLE(const QString &filename)
 {
     std::string sat_data[2];
     std::string name;
+    m_lastLoadedFile = filename;
 
     if (!Libtle::read_tle(filename.toStdString(), sat_data, &name)) {
         qWarning("Ошибка при чтении TLE файла");
@@ -40,7 +46,7 @@ void TrajectoryManager::loadTLE(const QString &filename)
     int t_start = static_cast<int>(dt_now);
     int t_end = t_start + 5400;
 
-    for (int t = t_start; t <= t_end; t += 60) {
+    for (int t = t_start; t <= t_end; t += 1) {
         double pos[3], vel[3], geo[3];
 
         Libbase::PrognSGP4(pos, vel, t, m_A0);
@@ -55,6 +61,10 @@ void TrajectoryManager::loadTLE(const QString &filename)
 
     emit trajectoryChanged();
     m_timer.start();
+
+    // перезапускаем таймер пересчета траектории
+    m_refreshTrajectoryTimer.stop();
+    m_refreshTrajectoryTimer.start(0.1 * 60 * 1000); // 10 секунд
 }
 
 void TrajectoryManager::startTracking()

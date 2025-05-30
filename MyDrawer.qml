@@ -6,6 +6,7 @@ Rectangle {
     id: panel
     border.width: 1
     opacity: 0.9
+    radius: 5
     //ВНЕШНИЕ СВОЙСТВА И ФУНКЦИИ ЭЛЕМЕНТА MYDRAWER
 
     //Состояние элемента MyDrawer: true - ящик выдвинут, false - ящик закрыт.
