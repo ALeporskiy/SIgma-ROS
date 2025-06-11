@@ -12,6 +12,10 @@ public:
 
     Q_INVOKABLE void loadFromJson(const QString &path);
 
+    Q_INVOKABLE void addObject(const QVariantMap &obj);
+    Q_INVOKABLE void saveToJson(const QString &path);
+    Q_INVOKABLE void removeAt(int index);
+
 signals:
     void objectsChanged();
 

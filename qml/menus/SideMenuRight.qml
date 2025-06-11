@@ -10,13 +10,14 @@ import QtQuick.Controls.Fusion
 Rectangle                                                                                                   //Инициализация Rectangle для бокового меню
 {
         id: sMenuRight
-        width: parent.width/10
+        width: parent.width/8
         height: parent.height
         x: parent.width
         border.width: 1
         opacity: 0.9
-        color: "white"
+        color: "dimgrey"
         property bool bMenuShown: false
+        property var sideMenuModel
 
         transform: Translate                                                                                // Перемещение основного прямоугольника
         {
@@ -31,6 +32,51 @@ Rectangle                                                                       
                 }
             }
         }
+
+        Item {
+            width: 250
+            height: parent.height
+
+            ListView {
+                id: objectListView
+                anchors.fill: parent
+                anchors.margins: 8
+                model: sideMenuModel
+                clip: true
+
+                delegate: ItemDelegate {
+                    width: objectListView.width
+                    height: 40
+                    background: Rectangle {
+                        color: hovered ? "#444444" : "#222222" // постоянный фон
+                    }
+
+                    Row {
+                        anchors.verticalCenter: parent.verticalCenter
+                        spacing: 8
+
+                        CheckBox {
+                            checked: model.checked === true
+                            onCheckedChanged: model.checked = checked
+                        }
+
+                        Text {
+                            text: model.name + " (" + model.category + ")"
+                            font.pixelSize: 14
+                            color: "white" // текст всегда белый
+                            elide: Text.ElideRight
+                            wrapMode: Text.NoWrap
+                            verticalAlignment: Text.AlignVCenter
+                        }
+                    }
+                }
+
+                ScrollBar.vertical: ScrollBar {
+                    policy: ScrollBar.AsNeeded
+                }
+            }
+        }
+
         Rectangle                                                                                           // Инициализация Rectangle для кнопки "Меню"
         {
 
@@ -53,16 +99,16 @@ Rectangle                                                                       
                 icon.width: 38
                 icon.height: 38
                 icon.source: "qrc:/qt/qml/Sigma_ROS/Icons/More_Grid_Big.svg"
-                icon.color: hovered ? "red" : "black"
+                icon.color: hovered ? "red" : "white"
 
                 onClicked: onMenuRight();
 
-                background: Rectangle
-                {
-                    radius: 15
-                    color: "white"
+                // background: Rectangle
+                // {
+                //     radius: 15
+                //     color: "white"
 
-                }
+                // }
 
             }
 
@@ -93,6 +139,19 @@ Rectangle                                                                       
         bMenuShown = !bMenuShown
         sMenuRightTrans.x = bMenuShown ? -sMenuRight.width : 0;
     }
+
+    Component.onCompleted: {
+        console.log("SideMenuRight получил sharedSideMenuModel, элементов:", sideMenuModel.count);
+    }
+
+    Connections {
+        target: sideMenuModel
+        onCountChanged: {
+            console.log("Модель в SideMenuRight изменилась, новый размер:", sideMenuModel.count)
+        }
+    }
+
+
 
 }
 

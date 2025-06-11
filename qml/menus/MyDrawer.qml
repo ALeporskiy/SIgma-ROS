@@ -7,6 +7,7 @@ Rectangle {
     border.width: 1
     opacity: 0.9
     radius: 5
+    color: "dimgrey"
     //ВНЕШНИЕ СВОЙСТВА И ФУНКЦИИ ЭЛЕМЕНТА MYDRAWER
 
     //Состояние элемента MyDrawer: true - ящик выдвинут, false - ящик закрыт.
@@ -42,7 +43,7 @@ Rectangle {
 
     //Определяет процент перекрытия экрана MyDrawer
     //!!! Попробовать переопределить через внешние свойства.!!!
-    readonly property real expandedFraction: 0.25
+    readonly property real expandedFraction: 0.1
 
     //Масштабный коэффициент.
     readonly property real _scaleFactor: _rootItem.width / 320
@@ -104,7 +105,7 @@ Rectangle {
     property Item _rootItem: parent
 
     //Определяет высоту MyDrawer. Высота равна высоте родительского элемента.
-    height: parent.height/1.3
+    height: parent.height/2
 
     //Обработка события изменения правого края MyDrawer.
     on_RightEdgeChanged: _setupAnchors()

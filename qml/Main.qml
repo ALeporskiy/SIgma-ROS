@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Window
+import QtQuick.Controls
 
 
 
@@ -13,6 +14,13 @@ Window
     height: Screen.height/1.5
     title: qsTr("Sigma V2")
     property bool bMenuShown: false
+
+    ListModel {
+        id: sharedSideMenuModel
+    }
+
+
+
 
 
 
@@ -28,6 +36,8 @@ Window
 
     SideMenuRight
     {
+        id: sMenuRight
+        sideMenuModel: sharedSideMenuModel
 
     }
 

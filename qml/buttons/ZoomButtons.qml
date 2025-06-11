@@ -10,6 +10,7 @@ Column
     anchors.bottom: parent.bottom
     anchors.bottomMargin: 100
     spacing: 10
+    z: 100
 
     property Item rowButtons: parent
 
@@ -27,7 +28,7 @@ Column
         icon.width: 50
         icon.height: 50
         icon.source: "qrc:/qt/qml/Sigma_ROS/Icons/Add_Plus_Square.svg"
-        icon.color: pressed ? "red" : "black"
+        icon.color: pressed ? "red" : "white"
 
 
         onClicked: map.zoomLevel = map.zoomLevel + 0.01;
@@ -35,11 +36,11 @@ Column
         autoRepeatInterval: 1
         autoRepeatDelay: 1
 
-        background: Rectangle
-        {
-            radius: 15
-            color: zoomButtonPlus.hovered ? "lemonchiffon" : "white"
-        }
+        // background: Rectangle
+        // {
+        //     radius: 15
+        //     color: zoomButtonPlus.hovered ? "lemonchiffon" : "white"
+        // }
 
     }
     Button  //Кнопка зума карты МИНУС
@@ -56,7 +57,7 @@ Column
         icon.width: 50
         icon.height: 50
         icon.source: "qrc:/qt/qml/Sigma_ROS/Icons/Add_Minus_Square.svg"
-        icon.color: pressed ? "red" : "black"
+        icon.color: pressed ? "red" : "white"
 
 
         onClicked: map.zoomLevel = map.zoomLevel - 0.01;
@@ -66,12 +67,12 @@ Column
 
 
 
-        background: Rectangle
-        {
-            radius: 15
-            color: zoomButtonMinus.hovered ? "lemonchiffon" : "white"
+        // background: Rectangle
+        // {
+        //     radius: 15
+        //     color: zoomButtonMinus.hovered ? "lemonchiffon" : "white"
 
-        }
+        // }
     }
 
 }

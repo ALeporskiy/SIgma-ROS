@@ -33,6 +33,9 @@ qt_add_qml_module(Sigma_ROS
         Icons/Add_Minus_Square.svg
         Icons/Hamburger_MD.svg
         Icons/More_Grid_Big.svg
+        Icons/File_Document.svg
+        Icons/Settings.svg
+
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

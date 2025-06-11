@@ -10,17 +10,23 @@ Map
     plugin: mapPlugin
     anchors.fill: parent
     copyrightsVisible: false
-    //activeMapType: supportedMapTypes[supportedMapTypes.length]
-    //activeMapType: Map.street
+
 
     zoomLevel: 2
-    minimumZoomLevel: 5
-    maximumZoomLevel: 17
+    minimumZoomLevel: 2
+    maximumZoomLevel: 10
     center: QtPositioning.coordinate(33.2,46.2)
 
     property geoCoordinate startCentroid
     property alias center: map.center
     property alias zoomLevel: map.zoomLevel
+
+    onZoomLevelChanged: {
+            if (zoomLevel > maximumZoomLevel)
+                zoomLevel = maximumZoomLevel;
+            if (zoomLevel < minimumZoomLevel)
+                zoomLevel = minimumZoomLevel;
+        }
 
     PinchHandler                                                                                       // Пермещение карты с помощью тачпада или сенсорного экрана
         {
@@ -68,11 +74,7 @@ Map
     id: mapPlugin
     name: "osm"
 
-    // PluginParameter
-    // {
-    // name: "osm.mapping.custom.host"
-    // value: "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/8/136/74"
-    // }
+
         PluginParameter
         {
             name: "osm.mapping.providersrepository.disabled"
@@ -112,6 +114,52 @@ Map
 
     }
 
+    MapItemView {
+        model: sharedSideMenuModel
+        // delegate: MapQuickItem {
+        //     coordinate: QtPositioning.coordinate(model.latitude, model.longitude)
+        //     anchorPoint.x: 12
+        //     anchorPoint.y: 12
+        //     visible: model.checked
+
+        //     sourceItem:
+        //         Text {
+        //             text: "📍"
+        //             font.pixelSize: 24
+        //             color: "red"
+        //         }
+        delegate: MapCircle {
+                center: QtPositioning.coordinate(model.latitude, model.longitude)
+                //radius: 50000  // в метрах
+                visible: model.checked
+                radius:{
+                    // Примерная формула: чем больше zoom, тем меньше радиус в метрах
+                    // Можно подстроить масштаб под свою карту
+                    if (!map) return 10000
+                    return 500000 / Math.pow(2, map.zoomLevel)
+                }
+
+                color: "red"
+                border.color: "black"
+                border.width: 3
+            }
+            //     Column {
+            //     Image {
+            //         id: icon
+            //         source: "qrc:/icons/More_Grid_Big.svg"
+            //         width: 24
+            //         height: 24
+            //     }
+            //     Text {
+            //         text: model.name
+            //         color: "black"
+            //         font.pixelSize: 12
+            //         horizontalAlignment: Text.AlignHCenter
+            //     }
+            // }
+        //}
+    }
+
     TrajectoryManager
         {
             id: trajectoryManager
@@ -146,11 +194,7 @@ Map
             anchorPoint.y: 6
         }
 
-        // Button {
-        //     text: "Загрузить орбиту"
-        //     anchors.bottom: parent.bottom
-        //     onClicked: trajectoryManager.loadTLE("TLE.TLE")
-        // }
+
 
         Column {
             anchors.fill: parent

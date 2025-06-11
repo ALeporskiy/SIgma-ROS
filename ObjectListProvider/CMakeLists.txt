@@ -17,3 +17,9 @@ target_link_libraries(ObjectListProvider
 )
 
 target_include_directories(ObjectListProvider PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+
+target_sources(ObjectListProvider
+    PRIVATE
+        objectlistprovider.cpp
+        objectlistprovider.h
+)
