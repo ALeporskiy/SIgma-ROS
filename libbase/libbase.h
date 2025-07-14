@@ -43,6 +43,7 @@ const double const_dpsec    = 2.0;               //вековой код для 
 const double const_dpper    = 3.0;               //периодический код для дальнего космоса
 
 
+
 class Libbase
 {
 public:
@@ -96,6 +97,7 @@ static int DOY(int int3Date[3]);
 static double Frac_of_Day(int int4Time[4], double factor_s);
 static double delt_vect_3(double A[3], double B[3]);
 static bool write_to_file(string strFile, string strMessage);
+static double Julian_Date(int year, int month, int day, int hour, int minute, double second);
 };
 
 #endif // LIBBASE_H

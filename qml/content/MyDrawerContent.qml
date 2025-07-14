@@ -15,6 +15,8 @@ Column
 
     property var objectsWindow
     property var sideMenuModel
+    property var windowView
+    property var settingsWindow
 
 
 
@@ -42,7 +44,7 @@ Column
 
         onClicked: {
             if (!objectsWindow || objectsWindow === null) {
-                var component = Qt.createComponent("../windows/ObjectsList.qml");
+                var component = Qt.createComponent("../windows/ObjectsList.qml").createObject(root);        // создаем компонент как дочерний от root в main.qml
                 if (component.status === Component.Ready) {
                     objectsWindow = component.createObject(null, {
                             sideMenuModel: sharedSideMenuModel
@@ -65,8 +67,6 @@ Column
                         //     objectsWindow = null;
                         // });
                     }
-                } else {
-                    console.log("Ошибка загрузки:", component.errorString());
                 }
             }
 
@@ -95,6 +95,27 @@ Column
         icon.color: hovered ? "red" : "white"
         text: "Настройки"
 
+        onClicked: {
+            if (!settingsWindow || settingsWindow === null) {
+                var component = Qt.createComponent("../windows/SettingsWindow.qml").createObject(root);
+                if (component.status === Component.Ready) {
+                    settingsWindow = component.createObject(null,)
+                    if (settingsWindow) {
+                        settingsWindow.show()
+                        settingsWindow.visibleChanged.connect(function() {
+                            if (!settingsWindow.visible) {
+                                settingsWindow = null
+                            }
+                        })
+                    }
+                }
+            }
+        }
+
+
+
+
+
     }
 
     Button
@@ -122,6 +143,32 @@ Column
         anchors.right: parent.right
         anchors.rightMargin: 20
         height: 40
+    }
+
+    Button {
+        text: "Вид из иллюминатора"
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.rightMargin: 20
+
+        height: 40
+        font.pixelSize: 14
+        onClicked: {
+            if (!windowView || windowView === null) {
+                var component = Qt.createComponent("../windows/WindowView.qml").createObject(root);
+                if (component.status === Component.Ready) {
+                    windowView = component.createObject(null, { "trajectoryManager": trajectoryManager })
+                    if (windowView) {
+                        windowView.show()
+                        windowView.visibleChanged.connect(function() {
+                            if (!windowView.visible) {
+                                windowView = null
+                            }
+                        })
+                    }
+                }
+            }
+        }
     }
 
 }

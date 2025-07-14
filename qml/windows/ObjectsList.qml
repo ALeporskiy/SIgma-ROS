@@ -13,6 +13,13 @@ Window {
 
     title: "Список объектов"
 
+    minimumWidth: width
+    maximumWidth: width
+    minimumHeight: height
+    maximumHeight: height
+
+    flags: Qt.Dialog | Qt.CustomizeWindowHint | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
+
     ListModel {
             id: userSelectionModel
         }
@@ -26,6 +33,7 @@ Window {
     property string dialogContext: ""
     property int contextIndex: -1
     property int pendingDeleteIndex: -1     // свойство для реализации подтверждения удаления объекта из списка
+    property bool pendingActionAfterSave: false
 
 
 
@@ -40,7 +48,7 @@ Window {
 
         RowLayout {
             width: parent.width
-            //spacing: 5
+
 
 
 
@@ -55,12 +63,13 @@ Window {
             Item { Layout.fillWidth: true }
 
             Text {
-                anchors.horizontalCenter: parent.horizontalCenter
+
+                Layout.alignment: Qt.AlignHCenter
 
 
                 text: "Выберите объекты для отображения на карте"
                 font.pixelSize: 16
-                //Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+
 
             }
 
@@ -195,20 +204,6 @@ Window {
                 text: "Взять объекты в работу"
                 Layout.alignment: Qt.AlignHCenter
                 onClicked: {
-                    // sideMenuModel.clear();
-                    // for (let i = 0; i < userSelectionModel.count; ++i) {
-                    //     let item = userSelectionModel.get(i);
-                    //     sideMenuModel.append({
-                    //         name: item.name,
-                    //         category: item.category,
-                    //         latitude: item.latitude,
-                    //         longitude: item.longitude,
-                    //         checked: false
-                    //     });
-                    // }
-                    // console.log("Передаю", userSelectionModel.count, "в sharedSideMenuModel");
-                    // window.destroy(); // закрыть окно после отправки
-
                         if (isListModified) {
                             dialogContext = "applyList"
                             confirmDialog.open()
@@ -242,17 +237,23 @@ Window {
         nameFilters: ["JSON files (*.json)"]
         onAccepted: {
             var json = { objects: [] };
-                for (var i = 0; i < userSelectionModel.count; ++i) {
-                    json.objects.push(userSelectionModel.get(i));
-                }
-
-                var selected = saveDialog.selectedFile;
-                if (selected) {
-                    saveProvider.saveJsonToFile(selected, JSON.stringify(json, null, 2));
-                } else {
-                    console.log("Путь не выбран");
-                }
+            for (var i = 0; i < userSelectionModel.count; ++i) {
+                json.objects.push(userSelectionModel.get(i));
             }
+
+            var selected = saveDialog.selectedFile;
+            if (selected) {
+                saveProvider.saveJsonToFile(selected, JSON.stringify(json, null, 2));
+
+                if (pendingActionAfterSave) {
+                    applyObjectsToSideMenu()
+                    window.destroy()
+                    pendingActionAfterSave = false
+                }
+            } else {
+                console.log("Путь не выбран");
+            }
+        }
     }
 
 
@@ -276,11 +277,11 @@ Window {
                                     userSelectionModel.append(parsed.objects[i]);
                                 }
                             } else {
-                                errorDialog.message = "Файл не содержит допустимых объектов.";
+                                errorDialog.message = "Файл не содержит допустимых объектов, либо пустой.";
                                 errorDialog.open();
                             }
                         } catch (e) {
-                            errorDialog.message = "Ошибка при разборе JSON-файла.";
+                            errorDialog.message = "Ошибка при загрузке JSON-файла.";
                             errorDialog.open();
                         }
                     } else {
@@ -298,17 +299,19 @@ Window {
         modal: true
         anchors.centerIn: parent
         property string message: ""
+        closePolicy: Popup.NoAutoClose
 
         contentItem: ColumnLayout {
             spacing: 10
             Label {
+
                 text: errorDialog.message
                 wrapMode: Text.WordWrap
                 Layout.preferredWidth: 300
             }
             Button {
                 text: "OK"
-                Layout.alignment: Qt.AlignRight
+                Layout.alignment: Qt.AlignHCenter
                 onClicked: errorDialog.close()
             }
         }
@@ -323,6 +326,7 @@ Window {
         focus: true
         standardButtons: Dialog.NoButton
         anchors.centerIn: parent
+        closePolicy: Popup.NoAutoClose
 
 
         Column {
@@ -340,8 +344,9 @@ Window {
                 Layout.fillWidth: true
 
                 Button {
-                    text: "Сохранить"
+                    text: "Сохранить и продолжить"
                     onClicked: {
+                        pendingActionAfterSave = true
                         saveDialog.open()
                         confirmDialog.close()
                     }
@@ -376,10 +381,11 @@ Window {
         modal: true
         title: "Новый объект"
         standardButtons: Dialog.Ok | Dialog.Cancel
-        width: 300
+        width: 250
         height: 200
         anchors.centerIn: parent
         visible: false
+        closePolicy: Popup.NoAutoClose
 
         property alias nameField: inputName
         property alias latField: inputLat
@@ -403,16 +409,35 @@ Window {
                 }
             }
 
+            Row {
+                spacing: 10
             TextField {
                 id: inputLat
                 placeholderText: "Широта"
                 inputMethodHints: Qt.ImhFormattedNumbersOnly
             }
 
+                Text {
+
+                    text: "Широта"
+                    font.pixelSize: 14
+                    color: "white"
+                }
+            }
+            Row {
+                spacing: 10
             TextField {
                 id: inputLon
                 placeholderText: "Долгота"
                 inputMethodHints: Qt.ImhFormattedNumbersOnly
+            }
+
+                Text {
+
+                    text: "Долгота"
+                    font.pixelSize: 14
+                    color: "white"
+                }
             }
         }
 
@@ -453,6 +478,7 @@ Window {
         anchors.centerIn: parent
         standardButtons: Dialog.Yes | Dialog.No
         width: 300
+        closePolicy: Popup.NoAutoClose
 
         contentItem: Item {
             width: parent.width

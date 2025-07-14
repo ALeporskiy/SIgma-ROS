@@ -12,7 +12,7 @@ Column
     spacing: 10
     z: 100
 
-    property Item rowButtons: parent
+
 
     Button //Кнопка зума карты ПЛЮС
     {
@@ -21,9 +21,10 @@ Column
         width: 50
         height: 50
 
+
         ToolTip.visible: hovered
         ToolTip.text: qsTr("Приблизить")
-        //padding: 0
+
 
         icon.width: 50
         icon.height: 50
@@ -36,11 +37,7 @@ Column
         autoRepeatInterval: 1
         autoRepeatDelay: 1
 
-        // background: Rectangle
-        // {
-        //     radius: 15
-        //     color: zoomButtonPlus.hovered ? "lemonchiffon" : "white"
-        // }
+
 
     }
     Button  //Кнопка зума карты МИНУС
@@ -67,12 +64,7 @@ Column
 
 
 
-        // background: Rectangle
-        // {
-        //     radius: 15
-        //     color: zoomButtonMinus.hovered ? "lemonchiffon" : "white"
 
-        // }
     }
 
 }

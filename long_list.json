@@ -1,0 +1,112 @@
+{
+  "objects": [
+    {
+      "category": "capital",
+      "latitude": 52.52,
+      "longitude": 13.405,
+      "name": "Берлин"
+    },
+    {
+      "category": "capital",
+      "latitude": 41.9028,
+      "longitude": 12.4964,
+      "name": "Рим"
+    },
+    {
+      "category": "capital",
+      "latitude": 35.6895,
+      "longitude": 139.6917,
+      "name": "Токио"
+    },
+    {
+      "category": "capital",
+      "latitude": 45.4215,
+      "longitude": -75.6972,
+      "name": "Оттава"
+    },
+    {
+      "category": "capital",
+      "latitude": 39.9042,
+      "longitude": 116.4074,
+      "name": "Пекин"
+    },
+    {
+      "category": "capital",
+      "latitude": 40.4168,
+      "longitude": -3.7038,
+      "name": "Мадрид"
+    },
+    {
+      "category": "capital",
+      "latitude": 55.7558,
+      "longitude": 37.6173,
+      "name": "Москва"
+    },
+    {
+      "category": "capital",
+      "latitude": 51.5074,
+      "longitude": -0.1278,
+      "name": "Лондон"
+    },
+    {
+      "category": "landmark",
+      "latitude": 37.9715,
+      "longitude": 23.7267,
+      "name": "Афинский Акрополь"
+    },
+    {
+      "category": "landmark",
+      "latitude": 27.1751,
+      "longitude": 78.0421,
+      "name": "Тадж-Махал"
+    },
+    {
+      "category": "landmark",
+      "latitude": 48.8584,
+      "longitude": 2.2945,
+      "name": "Эйфелева башня"
+    },
+    {
+      "category": "landmark",
+      "latitude": 40.6892,
+      "longitude": -74.0445,
+      "name": "Статуя Свободы"
+    },
+    {
+      "category": "landmark",
+      "latitude": 25.1972,
+      "longitude": 55.2744,
+      "name": "Бурдж-Халифа"
+    },
+    {
+      "category": "landmark",
+      "latitude": 30.3285,
+      "longitude": 35.4444,
+      "name": "Петра"
+    },
+    {
+      "category": "landmark",
+      "latitude": -13.1631,
+      "longitude": -72.545,
+      "name": "Мачу-Пикчу"
+    },
+    {
+      "category": "landmark",
+      "latitude": 55.7525,
+      "longitude": 37.6231,
+      "name": "Храм Василия Блаженного"
+    },
+    {
+      "category": "landmark",
+      "latitude": 41.8902,
+      "longitude": 12.4922,
+      "name": "Колизей"
+    },
+    {
+      "category": "mountain",
+      "latitude": -32.6532,
+      "longitude": -70.0109,
+      "name": "Аконкагуа"
+    }
+  ]
+}

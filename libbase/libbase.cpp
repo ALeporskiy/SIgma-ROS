@@ -1376,3 +1376,21 @@ bool Libbase::write_to_file(string strFile, string strMessage)
    return true;
 
 } // write_to_file
+
+
+double Libbase::Julian_Date(int year, int month, int day, int hour, int minute, double second)
+{
+    double dayFraction = (hour + (minute + second / 60.0) / 60.0) / 24.0;
+    if (month <= 2) {
+        year -= 1;
+        month += 12;
+    }
+
+    int A = year / 100;
+    int B = 2 - A + (A / 4);
+    double jd = static_cast<int>(365.25 * (year + 4716))
+                + static_cast<int>(30.6001 * (month + 1))
+                + day + dayFraction + B - 1524.5;
+
+    return jd;
+}

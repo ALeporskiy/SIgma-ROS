@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.16)
 project(Sigma_ROS VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(Qt6Positioning_DIR "C:/Qt/6.8.2/msvc2022_64/lib/cmake/Qt6Positioning")
+
 set(QT_QML_GENERATE_QMLTYPES TRUE)
 find_package(Qt6 REQUIRED COMPONENTS Quick Core Positioning QuickControls2)
 
@@ -28,6 +28,7 @@ qt_add_qml_module(Sigma_ROS
         QML_FILES qml/windows/SettingsWindow.qml
         QML_FILES qml/menus/TopMenu.qml
         QML_FILES qml/windows/ObjectsList.qml
+        QML_FILES qml/windows/WindowView.qml
     RESOURCES
         Icons/Add_Plus_Square.svg
         Icons/Add_Minus_Square.svg
@@ -35,6 +36,12 @@ qt_add_qml_module(Sigma_ROS
         Icons/More_Grid_Big.svg
         Icons/File_Document.svg
         Icons/Settings.svg
+        Icons/icons8-sun.gif
+        Icons/icons8-sun.svg
+        Icons/sun-svgrepo-com.svg
+        Icons/Full_Moon.svg
+        Icons/Waxing_Gibbous.svg
+
 
 )
 
